@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Meu App Completo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Exemplo de Input -->
+  <ion-item>
+    <ion-label position="floating">Nome</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <!-- Exemplo de Botão -->
+  <ion-button expand="full">Clique Aqui</ion-button>
+
+  <!-- Exemplo de Lista -->
+  <ion-list>
+    <ion-item>
+      <ion-label>Item 1</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Item 2</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Item 3</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <!-- Exemplo de Ícone -->
+  <ion-icon name="home"></ion-icon>
+
+  <!-- Exemplo de Toggle -->
+  <ion-item>
+    <ion-label>Ativar Notificações</ion-label>
+    <ion-toggle></ion-toggle>
+  </ion-item>
+
+  <!-- Exemplo de Segmento -->
+  <ion-segment>
+    <ion-segment-button value="opcao1">Opção 1</ion-segment-button>
+    <ion-segment-button value="opcao2">Opção 2</ion-segment-button>
+  </ion-segment>
+
+  <!-- Exemplo de Card -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Título do Card</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Este é um exemplo de um card no Ionic.
+    </ion-card-content>
+  </ion-card>
+
+ 
+  <!-- Exemplo de Barra de Progresso -->
+  <ion-progress-bar value="0.5"></ion-progress-bar>
+
+
+  <!-- Exemplo de Fab Button (Floating Action Button) -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+   <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+
+ <!-- Exemplo de Modal (deve ser implementado no TypeScript) -->
+  <ion-button expand="full" (click)="abrirModal()">Abrir Modal</ion-button>
+
+  <!-- Exemplo de Alerta (deve ser implementado no TypeScript) -->
+  <ion-button expand="full" (click)="mostrarAlerta()">Mostrar Alerta</ion-button>
