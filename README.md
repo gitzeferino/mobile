@@ -16,25 +16,6 @@ Este repositório contém os arquivos e projetos relacionados ao curso de desenv
 - **HTML & CSS**
 - **API REST**
 
-## Como Utilizar
-
-1. Clone o repositório:
-   ```sh
-   git clone https://github.com/seu-usuario/curso-mobile.git
-   ```
-2. Navegue até a pasta do projeto:
-   ```sh
-   cd curso-mobile
-   ```
-3. Instale as dependências:
-   ```sh
-   npm install
-   ```
-4. Inicie o projeto:
-   ```sh
-   ionic serve
-   ```
-
 ## Contribuição
 
 Sinta-se à vontade para contribuir com melhorias, relatando problemas ou enviando pull requests.
