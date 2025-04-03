@@ -1,0 +1,93 @@
+home.page.ts (Lógica do Componente)
+
+import { Component } from '@angular/core';
+import { IonicModule, ToastController } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+
+1. import { Component } from '@angular/core'; → Importa o Component, que é a base para criar componentes no Angular.  
+2. import { IonicModule, ToastController } from '@ionic/angular'; → Importa o módulo principal do Ionic e o ToastController, que permite exibir mensagens temporárias na tela.  
+3. import { CommonModule } from '@angular/common'; → Importa funcionalidades básicas do Angular, como diretivas e manipulação de elementos HTML.  
+
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule], 
+})
+
+4. @Component({...}) → Define que este é um componente Angular.  
+5. selector: 'app-home' → Define o nome da tag que representa este componente.  
+6. templateUrl: 'home.page.html' → Indica que o HTML deste componente está no arquivo home.page.html.  
+7. styleUrls: ['home.page.scss'] → Usa um arquivo CSS próprio para estilos do componente.  
+8. standalone: true → Indica que este componente é independente e não precisa estar em um módulo (NgModule).  
+9. imports: [IonicModule, CommonModule] → Importa os módulos necessários para que o Ionic funcione corretamente.  
+
+
+export class HomePage {
+  constructor(private toastController: ToastController) {}
+
+10. export class HomePage { ... } → Define a classe HomePage, que contém a lógica do componente.  
+11. constructor(private toastController: ToastController) {} → O constructor recebe o ToastController, que será usado para exibir mensagens (toasts).  
+
+
+async mostrarMensagem(mensagem: string, cor: string) {
+  const toast = await this.toastController.create({
+    message: mensagem,
+    duration: 2000,
+    position: 'bottom',
+    color: cor,
+  });
+  toast.present();
+}
+
+12. async mostrarMensagem(mensagem: string, cor: string) { ... } → Define uma função assíncrona que exibe um toast com uma mensagem personalizada e uma cor específica.  
+13. const toast = await this.toastController.create({...}) → Cria um toast com as configurações desejadas.  
+14. message: mensagem → O texto do toast será o valor passado como argumento na função.  
+15. duration: 2000 → O toast será exibido por 2 segundos (2000 milissegundos).  
+16. position: 'bottom' → O toast aparecerá na parte inferior da tela.  
+17. color: cor → Define a cor do toast com base no parâmetro recebido.  
+18. toast.present(); → Exibe o toast na tela.  
+
+home.page.html (Interface Gráfica)
+
+<ion-content class="ion-padding">
+
+19. <ion-content> → Componente do Ionic que define o conteúdo principal da página.  
+20. class="ion-padding" → Adiciona espaçamento interno para não deixar os elementos grudados nas bordas.  
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Agenda do Dia</ion-card-title>
+    <ion-card-subtitle>Organize suas tarefas</ion-card-subtitle>
+  </ion-card-header>
+
+21. <ion-card> → Um cartão do Ionic que agrupa informações relacionadas.  
+22. <ion-card-header> → Define um cabeçalho dentro do cartão.  
+23. <ion-card-title> → Define o título do cartão como "Agenda do Dia".  
+24. <ion-card-subtitle> → Define um subtítulo para o cartão.  
+
+<ion-card-content>
+  📌 Marque as tarefas concluídas ou desfaça caso tenha clicado errado.
+</ion-card-content>
+
+25. <ion-card-content> → Área de conteúdo dentro do cartão, onde explicamos o funcionamento da interface.  
+
+<ion-button expand="full" color="success" (click)="mostrarMensagem('Tarefa concluída! ✅', 'success')">
+  Marcar como Feito
+</ion-button>
+
+26. <ion-button> → Cria um botão no Ionic.  
+27. expand="full" → Faz com que o botão ocupe toda a largura disponível.  
+28. color="success" → Define a cor do botão como verde (sucesso).  
+29. (click)="mostrarMensagem('Tarefa concluída! ✅', 'success')" → Ao clicar, chama a função mostrarMensagem, exibindo um toast verde com a mensagem "Tarefa concluída! ✅".  
+
+<ion-button expand="full" color="danger" (click)="mostrarMensagem('Ação desfeita! ❌', 'danger')">
+  Desfazer
+</ion-button>
+
+30. expand="full" → Faz com que este botão também ocupe toda a largura.  
+31. color="danger" → Define a cor como vermelha (erro).  
+32. (click)="mostrarMensagem('Ação desfeita! ❌', 'danger')" → Ao clicar, exibe um toast vermelho com a mensagem "Ação desfeita! ❌".  
+
