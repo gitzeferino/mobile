@@ -1,4 +1,4 @@
-home.page.ts (Lógica do Componente)
+home.page.ts (Lógica do Componente)<--página do arquivo blank
 
 import { Component } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
@@ -49,8 +49,8 @@ async mostrarMensagem(mensagem: string, cor: string) {
 16. position: 'bottom' → O toast aparecerá na parte inferior da tela.  
 17. color: cor → Define a cor do toast com base no parâmetro recebido.  
 18. toast.present(); → Exibe o toast na tela.  
-
-home.page.html (Interface Gráfica)
+-----------------------------------------------------------------------
+home.page.html (Interface Gráfica)<--página do arquivo blank
 
 <ion-content class="ion-padding">
 
