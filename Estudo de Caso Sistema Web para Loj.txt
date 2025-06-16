@@ -1,0 +1,44 @@
+Estudo de Caso: Sistema Web para Loja de Produtos Naturais — "Raízes da Terra"
+Cenário
+A empresa Raízes da Terra é uma loja de produtos naturais que vende itens como chás, ervas, suplementos, cosméticos orgânicos e alimentos integrais. Atualmente, a empresa realiza vendas somente em sua loja física, mas deseja expandir seus negócios criando uma plataforma web onde os clientes possam visualizar os produtos, se cadastrar, fazer compras e acompanhar pedidos.
+
+Objetivos do Sistema
+Disponibilizar um catálogo online de produtos.
+
+Permitir que o cliente crie uma conta e faça login.
+
+Implementar um carrinho de compras com finalização de pedido.
+
+Permitir o rastreamento de pedidos pelo cliente.
+
+Permitir que o administrador:
+
+Cadastre, edite e remova produtos.
+
+Visualize pedidos realizados.
+
+Atividades para o Aluno
+1. Modelagem UML no draw.io
+Diagramas obrigatórios:
+
+Diagrama de Casos de Uso
+Mostrar os principais atores (cliente e administrador) e suas interações com o sistema.
+
+Diagrama de Classes
+Modelar as principais entidades: Usuário, Produto, Pedido, ItemPedido, etc.
+
+Diagrama de Sequência (opcional ou bônus)
+Exemplo: fluxo de “realização de pedido” ou “cadastro de cliente”.
+
+Página inicial com listagem dos produtos.
+
+Página de login/cadastro.
+
+Página do carrinho de compras.
+
+Página de detalhes do pedido (para o cliente).
+
+Página administrativa de produtos e pedidos.
+
+Desafio do Estudo de Caso
+"Com base na descrição da empresa Raízes da Terra, modele um sistema web utilizando UML no draw.io. Apresente os diagramas de caso de uso, classes e wireframe da interface da página inicial e da área do cliente. Seu trabalho deve ser entregue como um arquivo .drawio ou em PDF com os diagramas exportados."

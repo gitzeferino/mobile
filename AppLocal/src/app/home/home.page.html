@@ -1,0 +1,33 @@
+<!-- Cabeçalho da página -->
+<ion-header>
+  <ion-toolbar>
+    <!-- Título da toolbar -->
+    <ion-title>
+      Cadastro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Conteúdo principal da página com padding interno -->
+<ion-content class="ion-padding">
+  <!-- Primeiro campo do formulário: Nome -->
+  <ion-item>
+    <!-- Label flutuante para o campo nome -->
+    <ion-label position="floating">Nome</ion-label>
+    <!-- Campo de entrada de texto, ligado à variável 'nome' via two-way binding -->
+    <ion-input [(ngModel)]="nome" type="text"></ion-input>
+  </ion-item>
+
+  <!-- Segundo campo do formulário: Idade -->
+  <ion-item>
+    <!-- Label flutuante para o campo idade -->
+    <ion-label position="floating">Idade</ion-label>
+    <!-- Campo de entrada numérica, ligado à variável 'idade' via two-way binding -->
+    <ion-input [(ngModel)]="idade" type="number"></ion-input>
+  </ion-item>
+
+  <!-- Botão que ocupa toda largura disponível -->
+  <ion-button expand="full" (click)="salvar()">
+    Salvar
+  </ion-button>
+</ion-content>

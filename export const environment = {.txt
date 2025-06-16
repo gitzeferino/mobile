@@ -1,0 +1,17 @@
+export const environment = {
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyA6hKgNXUJvZMcPtZQsnvPXvicW88TTJe8",
+    authDomain: "teste-756f2.firebaseapp.com",
+    projectId: "teste-756f2",
+    storageBucket: "teste-756f2.firebasestorage.app",
+    messagingSenderId: "691094383206",
+    appId: "1:691094383206:web:80001d8f0b375ce9741ba7",
+    measurementId: "G-N6RZKPYB88"
+  }
+};
+
+
+npm install firebase @angular/fire
+
+ng generate component login --standalone
