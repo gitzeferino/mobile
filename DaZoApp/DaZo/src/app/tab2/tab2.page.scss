@@ -1,0 +1,24 @@
+// Em src/app/tab2/tab2.page.scss
+
+/* Remove o texto padrão de "Explore UI Components" */
+:host {
+  display: block;
+}
+
+/* Estilos do Título e Subtítulo */
+.form-title {
+  font-size: 1.4em;
+  font-weight: bold;
+  color: var(--ion-color-warning); // Usa a cor laranja do tema
+}
+
+.form-subtitle {
+  font-size: 0.9em;
+  color: var(--ion-text-color-step-600, #808080);
+  margin-top: -10px;
+}
+
+/* Garante que a lista não tenha paddings estranhos */
+ion-list {
+  padding-bottom: 16px;
+}

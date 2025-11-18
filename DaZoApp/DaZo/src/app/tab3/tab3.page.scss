@@ -1,0 +1,7 @@
+/* Em src/app/tab3/tab3.page.scss */
+
+/* Garante que o conteúdo do acordeão tenha a cor de texto correta */
+ion-accordion .ion-padding {
+  /* Usa a cor de texto padrão do tema */
+  color: var(--ion-text-color);
+}

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@capacitor-community/camera-preview": "^7.0.2",
+    "@capacitor/android": "^7.4.4",
+    "@capacitor/cli": "^7.4.4",
+    "@capacitor/geolocation": "^7.1.5"
+  }
+}
