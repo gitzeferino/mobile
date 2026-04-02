@@ -1,7 +1,0 @@
-{
-  "name": "DaZo",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}

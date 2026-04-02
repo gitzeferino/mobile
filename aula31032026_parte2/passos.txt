@@ -1,0 +1,215 @@
+ 1. Passo a Passo: Preparação e Instalação
+
+Abra o terminal do seu computador e execute os comandos abaixo na ordem:
+
+
+# 1. Criar o projeto Expo do zero (template em branco)
+npx create-expo-app zefmarket --template blank
+
+# 2. Entrar na pasta do projeto
+cd zefmarket
+
+# 3. Instalar as bibliotecas de navegação e suporte (essenciais para o marketplace)
+npx expo install @react-navigation/native @react-navigation/stack react-native-screens react-native-safe-area-context react-native-gesture-handler
+
+
+Dica de Organização: Crie uma pasta chamada src na raiz do projeto e, dentro dela, uma pasta chamada screens.
+
+
+
+ 2. O Banco de Dados de Produtos (src/data.js)
+Criamos um arquivo separado para simular os dados que viriam de uma API.
+
+
+// Exportamos a lista de produtos para ser usada em qualquer tela do app
+export const PRODUCTS = [
+  {
+    id: '1', // Identificador único do item
+    name: 'Teclado Mecânico RGB', // Nome do produto
+    price: 250.00, // Preço (tipo Number para facilitar formatação)
+    description: 'Teclado switch blue com iluminação customizável e padrão ABNT2.', // Detalhes
+    image: 'https://picsum.photos/seed/teclado/400' // Imagem estável para teste
+  },
+  {
+    id: '2',
+    name: 'Mouse Gamer 7200 DPI',
+    price: 120.50,
+    description: 'Mouse ergonômico com 6 botões programáveis e ajuste de DPI.',
+    image: 'https://picsum.photos/seed/mouse/400'
+  },
+  {
+    id: '3',
+    name: 'Monitor 24" Full HD',
+    price: 899.90,
+    description: 'Monitor IPS de 75Hz com bordas finas e excelente fidelidade de cor.',
+    image: 'https://picsum.photos/seed/monitor/400'
+  }
+];
+
+
+
+
+ 3. Configuração da Navegação (App.js)
+Este é o arquivo de entrada que gerencia as rotas do app.
+
+
+// Importação obrigatória no topo para o funcionamento de gestos no Android/iOS
+import 'react-native-gesture-handler';
+import React from 'react';
+// Container que segura todo o estado de navegação do aplicativo
+import { NavigationContainer } from '@react-navigation/native';
+// Criador da navegação em pilha (Stack)
+import { createStackNavigator } from '@react-navigation/stack';
+
+// Importação das nossas telas customizadas
+import Home from './src/screens/Home';
+import Details from './src/screens/Details';
+
+// Inicializamos a pilha de navegação
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      {/* headerShown: false esconde o título padrão para usarmos o nosso design azul */}
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* A primeira tela da lista será a tela inicial (Home) */}
+        <Stack.Screen name="Home" component={Home} />
+        {/* Tela para onde vamos ao clicar em um produto */}
+        <Stack.Screen name="Details" component={Details} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+
+
+
+ 4. Tela de Listagem (src/screens/Home.js)
+Onde o usuário vê todos os produtos disponíveis.
+
+
+import React from 'react';
+// Componentes base do React Native
+import { View, Text, FlatList, Image, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+// Importação dos dados (nosso "BD" local)
+import { PRODUCTS } from '../data';
+
+export default function Home({ navigation }) {
+  
+  // Função que define o visual de cada card de produto
+  const renderItem = ({ item }) => (
+    // TouchableOpacity cria o efeito de clique
+    <TouchableOpacity 
+      style={styles.card} 
+      // Ao clicar, envia o objeto 'item' completo para a tela de detalhes
+      onPress={() => navigation.navigate('Details', { product: item })}
+    >
+      <Image source={{ uri: item.image }} style={styles.image} />
+      <View style={styles.info}>
+        <Text style={styles.name}>{item.name}</Text>
+        {/* Formata o número para padrão de moeda com 2 casas decimais */}
+        <Text style={styles.price}>R$ {item.price.toFixed(2)}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {/* Cabeçalho superior personalizado */}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>ZefMarket</Text>
+      </View>
+
+      {/* Lista otimizada para carregar muitos itens com performance */}
+      <FlatList
+        data={PRODUCTS}
+        keyExtractor={(item) => item.id}
+        renderItem={renderItem}
+        contentContainerStyle={styles.list}
+      />
+    </SafeAreaView>
+  );
+}
+
+// Estilização (Equivalente ao CSS)
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#f5f5f5' },
+  header: { backgroundColor: '#007bff', padding: 25, alignItems: 'center' },
+  headerTitle: { color: '#fff', fontSize: 22, fontWeight: 'bold' },
+  list: { padding: 15 },
+  card: { 
+    backgroundColor: '#fff', 
+    flexDirection: 'row', 
+    marginBottom: 15, 
+    borderRadius: 12, 
+    overflow: 'hidden',
+    elevation: 4 // Sombra para Android
+  },
+  image: { width: 110, height: 110 },
+  info: { padding: 12, justifyContent: 'center' },
+  name: { fontSize: 18, fontWeight: 'bold' },
+  price: { fontSize: 16, color: '#27ae60', marginTop: 4 }
+});
+
+
+
+
+ 5. Tela de Detalhes (src/screens/Details.js)
+Onde as informações completas do produto são exibidas.
+
+
+import React from 'react';
+// ScrollView permite que o usuário role a tela caso o texto seja grande
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+
+export default function Details({ route, navigation }) {
+  // Capturamos os dados passados pela navegação através do 'route.params'
+  const { product } = route.params;
+
+  return (
+    <ScrollView style={styles.container}>
+      {/* Imagem grande do produto selecionado */}
+      <Image source={{ uri: product.image }} style={styles.fullImage} />
+      
+      <View style={styles.content}>
+        <Text style={styles.name}>{product.name}</Text>
+        <Text style={styles.price}>R$ {product.price.toFixed(2)}</Text>
+        <Text style={styles.description}>{product.description}</Text>
+
+        {/* Botão de compra (Apenas visual neste exemplo) */}
+        <TouchableOpacity style={styles.button} onPress={() => alert('Produto adicionado!')}>
+          <Text style={styles.buttonText}>Comprar Agora</Text>
+        </TouchableOpacity>
+
+        {/* Função navigation.goBack() retorna para a tela anterior */}
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Text style={styles.backText}>Voltar para a Loja</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: '#fff' },
+  fullImage: { width: '100%', height: 350 },
+  content: { padding: 20 },
+  name: { fontSize: 26, fontWeight: 'bold' },
+  price: { fontSize: 24, color: '#27ae60', marginVertical: 10, fontWeight: 'bold' },
+  description: { fontSize: 16, color: '#555', lineHeight: 24, marginBottom: 30 },
+  button: { backgroundColor: '#007bff', padding: 18, borderRadius: 10, alignItems: 'center' },
+  buttonText: { color: '#fff', fontSize: 18, fontWeight: 'bold' },
+  backButton: { marginTop: 25, alignItems: 'center' },
+  backText: { color: '#007bff', fontSize: 16 }
+});
+
+
+
+
+ Como Rodar o Projeto
+
+1.  No terminal, dentro da pasta zefmarket, digite:
+    
+    npx expo start
+    
